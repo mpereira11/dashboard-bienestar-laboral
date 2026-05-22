@@ -263,7 +263,7 @@ hr.div{border:none;border-top:1px solid #E4E8F0;margin:48px 0}
     <div class="slide-q">No todo está mal — pero hay tres focos que concentran el problema.</div>
     <div class="filter-context" id="fc-s3"></div>
     <div id="chart-s3"></div>
-    <div class="insight">Líneas de referencia: rojo = riesgo alto (≥ 70) · ámbar = medio-alto (≥ 50)</div>
+    <div class="insight">Líneas de referencia: rojo = riesgo muy alto (≥ 70) · ámbar = alto (≥ 50)</div>
   </div>
   <hr class="div">
 
@@ -409,7 +409,7 @@ const DIMS_INFO = {
 };
 const DIR_RIESGO = {
   CT:'bajo',PT:'alto',CL:'bajo',AC:'bajo',CR:'bajo',CoR:'alto',
-  GC:'bajo',SM:'alto',SAT:'bajo',IR:'alto',FT:'alto',TF:'alto',
+  GC:'bajo',SM:'bajo',SAT:'bajo',IR:'alto',FT:'alto',TF:'alto',
   BU:'alto',BP:'bajo',SOM:'alto',DL:'alto'
 };
 
@@ -505,7 +505,7 @@ function calcIRE(df){
     const info=DIMS_INFO[dim];
     const norm=(mu-1)/(info.max-1)*100;
     const ire=DIR_RIESGO[dim]==='alto'?norm:100-norm;
-    const nivel=ire>=70?'Alto':ire>=50?'Medio-alto':ire>=30?'Moderado':'Bajo';
+    const nivel=ire>=70?'Muy alto':ire>=50?'Alto':ire>=30?'Moderado':'Bajo';
     return{dim,ire,mu,desc:info.desc,tipo:info.tipo,nivel};
   }).filter(Boolean).sort((a,b)=>b.ire-a.ire);
 }
